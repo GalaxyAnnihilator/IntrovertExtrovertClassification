@@ -11,37 +11,35 @@ train:
 	python train.py
 
 eval:
-	cat << EOF > report.md
-# Exploratory Data Analysis
+	@echo "# Exploratory Data Analysis" > report.md
+	@echo "" >> report.md
+	@echo "## Class Distribution" >> report.md
+	@echo "![Class Distribution](./Figures/class_distribution.png)" >> report.md
+	@echo "" >> report.md
+	@echo "## Box Plot" >> report.md
+	@echo "![Box Plot](./Figures/box_plots.png)" >> report.md
+	@echo "" >> report.md
+	@echo "## Pair Plot of Numeric Features by Personality" >> report.md
+	@echo "![Pair Plot](./Figures/pair_plot.png)" >> report.md
+	@echo "" >> report.md
+	@echo "## Correlation Heatmap" >> report.md
+	@echo "![Correlation Heatmap](./Figures/correlation_heatmap.png)" >> report.md
+	@echo "" >> report.md
+	@echo "# Training Results" >> report.md
+	@echo "" >> report.md
+	@echo "## Model Metrics" >> report.md
+	@cat ./Figures/metrics.txt >> report.md
+	@echo "" >> report.md
+	@echo "## Confusion Matrix Plot" >> report.md
+	@echo "![Confusion Matrix](./Figures/confusion_matrix.png)" >> report.md
+	@echo "" >> report.md
+	@echo "## ROC Curve" >> report.md
+	@echo "![ROC Curve](./Figures/roc_curve.png)" >> report.md
+	@echo "" >> report.md
+	@echo "## Feature Importance" >> report.md
+	@echo "![Feature Importance](./Figures/feature_importance_plot.png)" >> report.md
 
-## Class Distribution
-![Class Distribution](./Figures/class_distribution.png)
-
-## Box Plot
-![Blox Plot](./Figures/box_plots.png)
-
-## Pair Plot of Numeric Features by Personality
-![Pait Plot](./Figures/pair_plot.png)
-
-## Correlation Heatmap
-![Correlation Heatmap](./Figures/correlation_heatmap.png)
-
-# Training Results
-
-## Model Metrics
-$$(cat ./Figures/metrics.txt)
-
-## Confusion Matrix Plot
-![Confusion Matrix](./Figures/confusion_matrix.png)
-
-## ROC Curve
-![ROC Curve](./Figures/roc_curve.png)
-
-## Feature Importance
-![Feature Importance](./Figures/feature_importance_plot.png)
-EOF
-
-	cml comment create report.md
+	@cml comment create report.md
 
 update-branch:
 	git config --global user.name $(USER_NAME)
