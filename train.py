@@ -72,10 +72,18 @@ pipe = Pipeline([
 pipe.fit(X_train, y_train)  
 
 predictions = pipe.predict(X_test)
-result = classification_report(y_test,predictions,labels=pipe.classes_)
+report_dict = classification_report(y_test,predictions,labels=pipe.classes_,output_dict=True)
 
-with open('./Figures/metrics.txt','w') as f:
-    f.write(result)
+# Convert to DataFrame
+df_report = pd.DataFrame(report_dict).transpose()
+
+# Round values for readability
+df_report = df_report.round(2)
+
+# Write as Markdown table
+with open("Figures/metrics.txt", "w") as f:
+    f.write("### Classification Report\n\n")
+    f.write(df_report.to_markdown())
 
 plt.figure(figsize=(8,6))
 sns.heatmap(confusion_matrix(y_test,predictions),annot=True,fmt='d',cmap="Blues")
