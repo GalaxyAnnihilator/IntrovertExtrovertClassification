@@ -5,7 +5,7 @@ A machine learning application that decides whether you are introvert or extrove
 
 https://huggingface.co/spaces/tmdeptrai3012/PersonalityPrediction
 
---
+---
 
 ## Dataset
 Kaggle: https://www.kaggle.com/datasets/rakeshkapilavai/extrovert-vs-introvert-behavior-data
